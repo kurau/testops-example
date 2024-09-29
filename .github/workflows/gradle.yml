@@ -1,0 +1,54 @@
+name: Java CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      BASE_URL:
+        description: Base Url
+        default: "https://testing.github.com"
+        required: true
+      ALLURE_JOB_RUN_ID:
+        description: "Inner parameter for Allure TestOps"
+        required: false
+      ALLURE_USERNAME:
+        description: "Inner parameter for Allure TestOps"
+        required: false
+  pull_request:
+    branches:
+      - 'main'
+  push:
+    branches:
+      - 'main'
+
+env:
+  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+  TESTS_URL: ${{ github.event.inputs.BASE_URL }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - uses: allure-framework/setup-allurectl@v1
+        with:
+          allure-endpoint: https://demo.qatools.cloud
+          allure-token: ${{ secrets.ALLURE_TOKEN }}
+          allure-project-id: 57
+      - name: Run Tests
+        run: allurectl watch -- ./gradlew clean test
+        env:
+          ALLURE_RESULTS: build/allure-results
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_results: build/allure-results
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
