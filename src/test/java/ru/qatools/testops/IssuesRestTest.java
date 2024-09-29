@@ -21,9 +21,9 @@ public class IssuesRestTest {
     @Story("Создание нового issue")
     @Microservice("Billing")
     @Tags({@Tag("api"), @Tag("smoke")})
-    @ParameterizedTest(name = "Create issue via api")
+    @ParameterizedTest(name = "Создание через API")
     @ValueSource(strings = {"First Note", "Second Note"})
-    @DisplayName("Создание нового issue")
+    @DisplayName("Создание нового issue.")
     public void shouldCreateIssue(@Param(value = "Title") String title) {
         steps.createIssueWithTitle(OWNER, REPO, title);
         steps.shouldSeeIssueWithTitle(OWNER, REPO, title);
@@ -34,9 +34,9 @@ public class IssuesRestTest {
     @Microservice("Repository")
     @Tags({@Tag("web"), @Tag("regress")})
     @JiraIssues({@JiraIssue("AE-1")})
-    @ParameterizedTest(name = "Close issue via api")
+    @ParameterizedTest(name = "Закрытие через API")
     @ValueSource(strings = {"First Note", "Second Note"})
-    @DisplayName("Удаление существующего issue")
+    @DisplayName("Удаление существующего issue.")
     public void shouldDeleteIssue(@Param(value = "Title") String title) {
         steps.createIssueWithTitle(OWNER, REPO, title);
         steps.closeIssueWithTitle(OWNER, REPO, title);
