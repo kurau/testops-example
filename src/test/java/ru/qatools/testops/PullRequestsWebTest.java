@@ -31,7 +31,7 @@ public class PullRequestsWebTest {
     @Story("Создание нового Pull Request")
     @Tags({@Tag("web"), @Tag("regress"), @Tag("smoke")})
     @JiraIssues({@JiraIssue("AE-1"), @JiraIssue("AE-2")})
-    @DisplayName("Создание issue для авторизованного пользователя")
+    @DisplayName("Создание pull request для авторизованного пользователя")
     public void shouldCreatePullRequest() {
         steps.openPullRequestsPage(OWNER, REPO);
         steps.createPullRequestFromBranch(BRANCH);
@@ -42,9 +42,9 @@ public class PullRequestsWebTest {
     @TM4J("AE-T7")
     @JiraIssue("AE-2")
     @Microservice("Repository")
-    @Story("Закрытие существующего pull request")
+    @Story("Закрытие существующего Pull Request")
     @Tags({@Tag("web"), @Tag("regress")})
-    @DisplayName("Удаление issue для авторизованного пользователя")
+    @DisplayName("Закрытие pull request для авторизованного пользователя")
     public void shouldClosePullRequest() {
         steps.openPullRequestsPage(OWNER, REPO);
         steps.createPullRequestFromBranch(BRANCH);

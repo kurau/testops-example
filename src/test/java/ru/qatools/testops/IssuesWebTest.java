@@ -28,7 +28,7 @@ public class IssuesWebTest {
     @Test
     @TM4J("AE-T3")
     @Microservice("Billing")
-    @Story("Создание новой issue")
+    @Story("Создание нового issue")
     @JiraIssues({@JiraIssue("AE-2")})
     @Tags({@Tag("web"), @Tag("critical")})
     @DisplayName("Создание issue для авторизованного пользователя")
@@ -41,7 +41,7 @@ public class IssuesWebTest {
     @Test
     @TM4J("AE-T4")
     @Microservice("Repository")
-    @Story("Создание новой issue")
+    @Story("Создание нового issue")
     @Tags({@Tag("web"), @Tag("regress")})
     @JiraIssues({@JiraIssue("AE-1")})
     @DisplayName("Добавление заметки")
@@ -54,7 +54,7 @@ public class IssuesWebTest {
     @Test
     @TM4J("AE-T5")
     @Microservice("Repository")
-    @Story("Закрытие существующей issue")
+    @Story("Закрытие существующего issue")
     @Tags({@Tag("web"), @Tag("regress")})
     @JiraIssues({@JiraIssue("AE-1")})
     @DisplayName("Закрытие issue для авторизованного пользователя")
